@@ -1,0 +1,49 @@
+.App {
+    background: black;
+    height:100vh;
+    color:#fff;
+    display:flex;
+    justify-content: center;
+    padding:3rem 0;
+    text-align: center;
+}
+
+.App h1 , .App h3 {
+    margin:0;
+    text-transform: uppercase;
+
+}
+
+.App h1 {
+    padding-bottom: 1.9rem;
+    letter-spacing: 4px;
+
+}
+.App h3 {
+    font-size:1rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.App h1 span {
+    font-size:3rem;
+}
+
+.App h3 span {
+    font-size:1.5rem;
+}
+
+.App button {
+    background:teal;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top:1.5rem;
+    padding:1rem 2rem;
+    cursor: pointer;
+    color:#fff;
+}
+.App button:hover {
+    background:rgb(35, 177, 177);
+
+}
