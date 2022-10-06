@@ -6,8 +6,10 @@
 }
 
 .Card img {
-    margin-top:2rem;
+    margin-top:4rem;
     width: 150px;
-    /* position: absolute; */
+    position: absolute;
+    top:200px;
     /* transform: rotate(-30deg) */
 }
+

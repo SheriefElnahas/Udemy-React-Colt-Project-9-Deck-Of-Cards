@@ -8,28 +8,39 @@ import Card from "./Card";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cardId: "" ,imgSrc: "" };
-
+    this.state = { cardId: "" , imgsArr: [], cardsRemaining: 52 };
+    
   }
   async componentDidMount() {
     const result = await axios("https://deckofcardsapi.com/api/deck/new/shuffle/");
     const id = result.data.deck_id;
     this.setState({cardId: id});
-  
-    // const result2 = await axios(`https://deckofcardsapi.com/api/deck/${id}/draw/.`);
-    // this.setState({ imgSrc: result2.data.cards[0].image });
+  }
 
+
+  randomRotateDeg() {
+    return Math.ceil(Math.random() * 45) * (Math.round(Math.random()) ? 1 : -1);
   }
 
   async getCard() {
-    const result2 = await axios(`https://deckofcardsapi.com/api/deck/${this.state.cardId}/draw/.`);
-    this.setState({ imgSrc: result2.data.cards[0].image });
+    if(this.state.cardsRemaining !== 0) {
+      const result = await axios(`https://deckofcardsapi.com/api/deck/${this.state.cardId}/draw/.`);
+      const cardData = result.data.cards[0];
+
+      const cardObject = {
+        imgSrc: cardData.image,
+        altText: `${cardData.value} - ${cardData.suit}`,
+        rotateDeg: this.randomRotateDeg(),
+      }
+  
+  
+      this.setState({imgsArr: [...this.state.imgsArr, cardObject ], cardsRemaining: result.data.remaining})
+    } else {
+      alert("Error : no cards remaining")
+    } 
   }
 
-
-
   render() {
-
     return (
       <div className="App">
         <div className="App-card-container">
@@ -38,13 +49,17 @@ class App extends React.Component {
           </h1>
           <h3>  <span className="card">♦️</span> A Little demo made with react <span className="card">♦️</span>
           </h3>
-          <button onClick={() => this.getCard()}>Deal me a card!</button>
+
+          <button disabled={this.state.cardsRemaining === 0 ? true : false}  onClick={() => this.getCard()}>Deal me a card!</button>
           </div>
        
 
         </div>
-        <Card  imgUrl={this.state.imgSrc}/>
-        <Card  imgUrl={this.state.imgSrc}/>
+  
+        {this.state.imgsArr.map((img, index) => {
+          return <Card imgUrl={img.imgSrc} key={index} altText={img.altText} rotateDeg={img.rotateDeg}/>
+        })}
+
       </div>
     );
   }

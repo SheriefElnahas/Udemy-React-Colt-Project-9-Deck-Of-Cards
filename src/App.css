@@ -51,3 +51,8 @@
     background:rgb(35, 177, 177);
 
 }
+
+.App button:disabled {
+    background:#d11414;
+    cursor: no-drop;
+}
