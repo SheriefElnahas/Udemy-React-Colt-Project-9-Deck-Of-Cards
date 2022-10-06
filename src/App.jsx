@@ -1,6 +1,7 @@
 import './App.css';
 
 import React from "react";
+import Card from './Card';
 
 class App extends React.Component {
   render() {
@@ -9,7 +10,8 @@ class App extends React.Component {
         <div>
         <h1><span className="card">♦️</span> Card Dealer <span className="card">♦️</span></h1>
         <h3><span className="card">♦️</span> A Little demo made with react <span className="card">♦️</span></h3>
-        <button>Deal me a card!</button>
+
+        < Card />
         </div>
 
       </div>

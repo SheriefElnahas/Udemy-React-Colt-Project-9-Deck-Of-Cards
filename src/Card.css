@@ -1,0 +1,11 @@
+.Card {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Card img {
+    margin-top:2rem;
+    width: 150px;
+}
